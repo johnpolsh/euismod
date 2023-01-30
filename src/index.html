@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<title>Euismod</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+        <!-- <link rel="stylesheet" type="text/css" href="scss/styles.scss" /> -->
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js" crossorigin="anonymous"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.34.1/min/vs/editor/editor.main.js" crossorigin="anonymous"></script> -->
+
+		<style>
+            /* TODO: configure for migration options (SCSS) */
+            @media (min-width: 992px) {
+                .sidebar-wrapper {
+                    position: fixed;
+                    top: 54px;
+                    bottom: 0;
+                    left: 0;
+                    padding: 24px;
+                    overflow-y: auto;
+                    width: 25%;
+                }
+            }
+		</style>
+	</head>
+
+	<body>
+        <svg class="d-none" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="github-ico" viewBox="0 0 512 499.36">
+                <title>Github</title>
+                <path fill="currentColor" fill-rule="evenodd" d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"></path>
+            </symbol>
+            <symbol id="twitter-ico" viewBox="0 0 512 416.32">
+                <title>Twitter</title>
+                <path fill="currentColor" d="M160.83 416.32c193.2 0 298.92-160.22 298.92-298.92 0-4.51 0-9-.2-13.52A214 214 0 0 0 512 49.38a212.93 212.93 0 0 1-60.44 16.6 105.7 105.7 0 0 0 46.3-58.19 209 209 0 0 1-66.79 25.37 105.09 105.09 0 0 0-181.73 71.91 116.12 116.12 0 0 0 2.66 24c-87.28-4.3-164.73-46.3-216.56-109.82A105.48 105.48 0 0 0 68 159.6a106.27 106.27 0 0 1-47.53-13.11v1.43a105.28 105.28 0 0 0 84.21 103.06 105.67 105.67 0 0 1-47.33 1.84 105.06 105.06 0 0 0 98.14 72.94A210.72 210.72 0 0 1 25 370.84a202.17 202.17 0 0 1-25-1.43 298.85 298.85 0 0 0 160.83 46.92"></path>
+            </symbol>
+        </svg>
+        <header class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+            <nav class="container flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-label="Open navigation" role="navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">Euismod</a>
+            </nav>
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <aside class="px-4">
+                        <div class="sidebar-wrapper">
+                            <nav id="sidebarNav" class="offcanvas-lg offcanvas-start" tabindex="-1" aria-labelledby="sidebarNavLabel">
+                                <div class="offcanvas-header">
+                                    <h5 id="sidebarNavLabel" class="offcanvas-title">Euismod</h5>
+                                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebarNav"></button>
+                                </div>
+                                <div class="offcanvas-body d-block">
+                                    <object type="image/svg+xml" data="euismod.svg" width="180" height="180">
+                                        <img href="euismod.svg" alt="Euismod banner animation" />
+                                    </object>
+                                    <ul class="navbar-nav unstyled-list">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                            <ul class="unstyled-list">
+                                                <li><a class="nav-link" href="#">Lorem</a></li>
+                                                <li><a class="nav-link" href="#">Ipsum</a></li>
+                                                <li><a class="nav-link" href="#">Dolor</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Projects</a>
+                                            <ul class="unstyled-list">
+                                                <li><a class="nav-link" href="#">porttitor</a></li>
+                                                <li><a class="nav-link" href="#">ut aliquam</a></li>
+                                                <li><a class="nav-link" href="#">eget velit aliquet</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Comunity</a>
+                                            <ul class="unstyled-list">
+                                                <li><a class="nav-link" href="#">Enim</a></li>
+                                                <li><a class="nav-link disabled" href="#">Nulla</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-lg-9">
+                    <main class="">
+                        <div class="container p-3">
+                            <h1 id="euismod" class="m-0">Euismod</h1>
+                            <div class="py-3">
+                                <p class="text-muted m-0">Last update: <span></span></p>
+                                <div>
+                                    <span class="badge text-bg-primary">consectetur: info</span>
+                                    <span class="badge text-bg-secondary">adipiscing: info</span>
+                                    <span class="badge text-bg-info">duis: info</span>
+                                    <span class="badge text-bg-danger">lobortis: info</span>
+                                </div>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                aliqua. Tempor orci dapibus ultrices in iaculis nunc sed augue lacus. Odio eu feugiat pretium nibh ipsum consequat
+                                nisl vel pretium. Urna duis convallis convallis tellus id interdum. Tempor nec feugiat nisl pretium. Bibendum at
+                                varius vel pharetra vel turpis. Duis ultricies lacus sed turpis tincidunt id. Cum sociis natoque penatibus et
+                                magnis. Cras tincidunt lobortis feugiat vivamus at. Convallis a cras semper auctor neque vitae tempus. Massa
+                                placerat duis ultricies lacus sed. Mattis molestie a iaculis at erat pellentesque. Urna molestie at elementum eu
+                                facilisis sed odio morbi quis. Tincidunt eget nullam non nisi. Egestas egestas fringilla phasellus faucibus
+                                scelerisque eleifend donec. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero. Auctor augue
+                                mauris augue neque gravida in fermentum et sollicitudin. Amet cursus sit amet dictum sit amet.
+                            </p>
+                        </div>
+                        <div class="container p-3">
+                            <h1 id="tiuld-frec" class="m-0">Tiuld frec</h1>
+                            <div class="py-3">
+                                <p class="text-muted m-0">subtitle example</p>
+                                <div>
+                                    <span class="badge rounded-pill text-bg-primary">consectetur: info</span>
+                                    <span class="badge rounded-pill text-bg-secondary">adipiscing: info</span>
+                                    <span class="badge rounded-pill text-bg-info">duis: info</span>
+                                    <span class="badge rounded-pill text-bg-danger">lobortis: info</span>
+                                </div>
+                            </div>
+                            <p>
+                                Sit amet consectetur adipiscing elit duis tristique. Tristique et egestas quis ipsum suspendisse ultrices. Proin sed
+                                libero enim sed faucibus. Urna et pharetra pharetra massa. Montes nascetur ridiculus mus mauris vitae. Lacus vel
+                                facilisis volutpat est velit egestas dui id ornare. Fusce ut placerat orci nulla. Mattis aliquam faucibus purus in
+                                massa tempor nec. Ut eu sem integer vitae. Odio euismod lacinia at quis risus sed vulputate odio ut. Enim sed
+                                faucibus turpis in eu mi bibendum. Scelerisque in dictum non consectetur a erat nam.
+                            </p>
+                            <div class="card-group">
+                                <div class="card">
+                                    <img src="placeholder00.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                            content. This content is a little bit longer.</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img src="placeholder01.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <img src="placeholder02.png" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                            content. This card has even longer content than the first to show that equal height action.</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container p-3">
+                            <h1 id="viverra" class="m-0">Monaco editor</h1>
+                            <p class="text-muted m-0">Monaco editor plugin</p>
+                            <div class="container p-3">
+                                <div class="row">
+                                    <div id="editorWrapper00" class="rounded col-lg-9 d-flex align-items-center justify-content-center monaco-editor-wrapper">
+                                        <span class="spinner-grow text-primary position-absolute z-n1" role="status">
+                                            <small class="visually-hidden">Loading...</small>
+                                        </span>
+                                    </div>
+                                    <div class="px-4 col-lg-3">
+                                        <h5>Inline code</h5>
+                                        <p>
+                                            Viverra ipsum nunc aliquet bibendum enim. Tortor pretium viverra suspendisse potenti nullam ac tortor vitae purus. Massa
+                                            tincidunt dui ut ornare lectus sit amet. Lorem ipsum dolor sit amet consectetur adipiscing elit.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <footer class="py-4">
+                        <div class="container-fluid p-4 p-md-5">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a class="align-items-center text-decoration-none" aria-label="Euismod">EUISMOD</a>
+                                    <p class="mb-2 small">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                        aliqua. Enim nulla aliquet porttitor lacus luctus accumsan tortor. Eget velit aliquet sagittis id consectetur. Diam quam
+                                        nulla porttitor massa id neque. Ut aliquam purus sit amet luctus venenatis. Tellus molestie nunc non blandit massa enim
+                                        nec.
+                                    </p>
+                                    <ul class="list-unstyled flex-row flex-wrap ms-lg-auto">
+                                        <li class="mb-2">
+                                            <a class="p-2" href="https://github.com" target="_blank" rel="noopener">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><use href="#github-ico"></use></svg>
+                                                <small>Github</small>
+                                            </a>
+                                            <a class="p-2" href="https://twitter.com" target="_blank" rel="noopener">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><use href="#twitter-ico"></use></svg>
+                                                <small>twitter</small>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-4 col-lg-2">
+                                    <h5 id="homeLabel">Home</h5>
+                                    <ul class="list-unstyled flex-row flex-wrap ms-lg-auto">
+                                        <li class="mb-2"><a href="/">Lorem</a></li>
+                                        <li class="mb-2"><a href="/">Ipsum</a></li>
+                                        <li class="mb-2"><a href="/">Dolor</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-4 col-lg-2">
+                                    <h5 id="homeLabel">Projects</h5>
+                                    <ul class="list-unstyled flex-row flex-wrap ms-lg-auto">
+                                        <li class="mb-2"><a href="/">porttitor</a></li>
+                                        <li class="mb-2"><a href="/">ut aliquam</a></li>
+                                        <li class="mb-2"><a href="/">eget velit aliquet</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-4 col-lg-2">
+                                    <h5 id="homeLabel">Comunity</h5>
+                                    <ul class="list-unstyled flex-row flex-wrap ms-lg-auto">
+                                        <li class="mb-2"><a href="/">Enim</a></li>
+                                        <li class="mb-2"><a href="/">Nulla</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <small class="text-center w-100">Copyright &copy; 2023</small>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            require.config({
+                paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }
+            });
+            window.MonacoEvironment = {
+                getWorkerUrl: () => proxy
+            };
+            let proxy = URL.createObjectURL(new Blob([`
+                self.MonacoEnvironment = {
+                    baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+                };
+                importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+
+            `], { type: 'text/javascript' }));
+            require(["vs/editor/editor.main"], function() {
+                let editor = monaco.editor.create(document.getElementById("editorWrapper00"), {
+                    automaticLayout: true,
+                    contextMenu: false,
+                    value: [
+                        '#include <iostream>',
+                        'using namespace std;\n',
+                        'int main() {',
+                        '\tcout << "Hello world!" << endl;\n',
+                        '\treturn 0;',
+                        '}\n'
+                    ].join('\n'),
+                    readOnly: true,
+                    language: 'cpp',
+                    theme: 'vs-dark'
+                });
+            });
+        </script>
+	</body>
+</html>
